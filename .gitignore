@@ -1,0 +1,13 @@
+.cake_task_cache
+.idea
+.svn
+.tags
+tags
+.tags_sorted_by_file
+.tm_properties
+.project
+.buildpath
+.settings
+Log/*
+DcServer/DcServer
+DcCenter/DcCenter
