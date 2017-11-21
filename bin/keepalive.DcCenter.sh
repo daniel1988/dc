@@ -2,6 +2,10 @@ LOG=/data/dc/Log
 PROC=/data/dc/DcCenter/DcCenter
 FLAG='
 -dc_center=127.0.0.1:9999
+-es_id_key=EsIncrIdKey
+-eshost=127.0.0.1
+-esindex=dc_index
+-esport=9200
 -log=/data/dc/Log
 '
 NRPROC=`ps ax | grep -v grep | grep -w $PROC | grep -w "$FLAG" | wc -l`

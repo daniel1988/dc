@@ -21,15 +21,12 @@ func init() {
 	Common.SetLogDir(*flgLogDir)
 }
 
-type DcServer struct {
-}
-
-func (this *DcServer) StartUdpSrv() {
+func ListenUdpSrv() {
 	udpSrv := new(DcUdpServer)
 	udpSrv.ListenSocket()
 }
 
-func (this *DcServer) StartSyncClient() {
+func StartDcSync() {
 	syncSrv := NewDcSync()
 	for {
 		syncSrv.Sync()
@@ -38,8 +35,8 @@ func (this *DcServer) StartSyncClient() {
 
 func main() {
 	defer Common.CheckPanic()
-	dcSrv := &DcServer{}
-	go dcSrv.StartSyncClient()
 
-	dcSrv.StartUdpSrv()
+	go StartDcSync()
+
+	ListenUdpSrv()
 }

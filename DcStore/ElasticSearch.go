@@ -2,10 +2,10 @@
 package DcStore
 
 import (
+	Common "../DcCommon"
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/6xiao/go/Common"
 	es "github.com/mattbaird/elastigo/lib"
 	"strings"
 	"sync"
@@ -49,6 +49,7 @@ func (this *ElasticSearch) CalcIndex(index, _type, id string) string {
 
 // 添加新的内容
 func (this *ElasticSearch) InsertDoc(index, _type, id string, ttl int, v interface{}) error {
+
 	defer Common.CheckPanic()
 	this.Lock()
 	defer this.Unlock()

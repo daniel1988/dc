@@ -28,41 +28,33 @@ func init() {
 
 type DcSync struct {
 	addr string
-	conn *net.TCPConn
 }
 
 func NewDcSync() *DcSync {
-	return &DcSync{*flgDcCenterAddr, nil}
+	return &DcSync{*flgDcCenterAddr}
 }
 
 func (this *DcSync) Connect() *net.TCPConn {
-	if this.conn != nil {
-		return this.conn
-	}
 	udpAddr, err := net.ResolveTCPAddr("tcp", this.addr)
 	if err != nil {
-		this.conn = nil
 		logErr("ResolveTCPAddr Error:", this.addr)
-		return this.conn
+		return nil
 	}
-	this.conn, err = net.DialTCP("tcp", nil, udpAddr)
+	conn, err := net.DialTCP("tcp", nil, udpAddr)
 	if err != nil {
-		this.conn = nil
 		logErr("Dial Error:", this.addr)
-		return this.conn
+		return conn
 	}
-	return this.conn
+	return conn
 }
 
-func (this *DcSync) Close() error {
-	this.conn.Close()
-	this.conn = nil
+func (this *DcSync) Close(conn *net.TCPConn) error {
+	conn.Close()
 	return nil
 }
 
 func (this *DcSync) Sync() {
-	this.Connect()
-	conn := this.conn
+	conn := this.Connect()
 
 	RedisSrv := DcStore.NewRedisPool(*flgRedisSrv, 0)
 	message, err := RedisSrv.Lpop(*flgRedisQueueKey)
@@ -73,7 +65,6 @@ func (this *DcSync) Sync() {
 		return
 	}
 	messageCount += 1
-	fmt.Println("Lpop:", string(message))
 	if err != nil {
 		logErr("Lpop Error", *flgRedisQueueKey)
 		return
@@ -81,12 +72,12 @@ func (this *DcSync) Sync() {
 
 	_, err = conn.Write(message)
 	if err != nil {
-		logErr("Re Rpush", *flgRedisQueueKey, message)
+		logErr("Re Rpush", *flgRedisQueueKey, string(message))
 		RedisSrv.Rpush(*flgRedisQueueKey, message)
 		return
 	}
 	fmt.Println("Sync:", string(message))
-	// conn.Close()
+	conn.Close()
 }
 
 // func main() {

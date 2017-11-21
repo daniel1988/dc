@@ -1,0 +1,35 @@
+
+##查看所有索引
+
+curl 127.0.0.1:9200/_cat/indices?v
+
+## Delete an Index －删除索引
+
+curl -XDELETE 127.0.0.1:9200/dc_index?pretty
+
+```
+$ curl 127.0.0.1:9200/_cat/indices?v
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+```
+> 这意味着成功删除了索引
+
+```
+
+##查询数据
+
+curl -XGET 127.0.0.1:9200/dc_index/_search?pretty
+
+
+curl -XGET 127.0.0.1:9200/dc_index/_search?pretty -d '
+{
+    "query": {
+        "match": { "AppName": "TEST" }
+    }
+}'
+
+curl -XGET 127.0.0.1:9200/dc_index/_search?pretty -d '
+{
+    "query": {
+        "match": { "UserId": "2924133" }
+    }
+}'

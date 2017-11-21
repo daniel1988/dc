@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ROOT="/data/dc/"
-srv_list=("DcServer" "DcCenter")
+srv_list=("DcCenter" "DcServer" )
 script_list=("keepalive.DcServer.sh" "keepalive.DcCenter.sh")
 
 function listService() {

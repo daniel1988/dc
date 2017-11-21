@@ -2,13 +2,20 @@ package main
 
 import (
 	Common "../DcCommon"
+	DcStore "../DcStore"
+	// "../TransObject"
+	"encoding/json"
 	"flag"
-	"fmt"
 	"net"
 	"os"
 )
 
 var (
+	flgEs     = flag.String("eshost", "127.0.0.1", "elastic search ip")
+	flgEsPort = flag.String("esport", "9200", "elastic search port")
+	flgIndex  = flag.String("esindex", "dc_index", "elastic search index")
+	// flgRedisSrv     = flag.String("redis", "127.0.0.1:6379", "redis server")
+	flgIncrIdKey    = flag.String("es_id_key", "EsIncrIdKey", "elastic id redis key")
 	flgDcCenterAddr = flag.String("dc_center", "127.0.0.1:9999", "DcCenter Address")
 	flgLogDir       = flag.String("log", "/data/dc/Log", "log dir")
 	logErr          = Common.ErrorLog
@@ -21,6 +28,11 @@ func init() {
 }
 
 type DcCenter struct {
+	*DcStore.ElasticSearch
+}
+
+func NewDcCenter() *DcCenter {
+	return &DcCenter{DcStore.NewStaticStore(*flgEs, *flgEsPort)}
 }
 
 func (this *DcCenter) listenSocket() error {
@@ -47,28 +59,41 @@ func (this *DcCenter) listenSocket() error {
 		conn.SetNoDelay(true)
 		conn.SetLinger(-1)
 
-		logInfo(conn.RemoteAddr().String(), " tcp connect success")
-
+		logInfo(conn.RemoteAddr().String(), "DcSync connect success")
 		this.handleConnection(conn)
 	}
 }
 
 func (this *DcCenter) handleConnection(conn net.Conn) {
 
-	buffer := make([]byte, 2048)
-
+	buffer := make([]byte, 1024)
 	for {
 		n, err := conn.Read(buffer)
 		if err != nil {
-			fmt.Println(conn.RemoteAddr().String(), " connection error: ", err)
 			return
 		}
-		fmt.Println(conn.RemoteAddr().String(), "receive data string:\n", string(buffer[:n]))
-	}
+		doc := make(map[string]interface{})
+		json.Unmarshal(buffer[:n], &doc)
 
+		esId := this.GenerateId()
+		ttl := int(Common.NumberNow())
+		err = this.InsertDoc(*flgIndex, "dc_type", esId, ttl, doc)
+		if err != nil {
+			logErr("InsertDoc Error:", err, string(buffer[:n]))
+		}
+	}
+}
+
+func (this *DcCenter) GenerateId() string {
+	// RedisSrv := DcStore.NewRedisPool(*flgRedisSrv, 0)
+	// esId, err := RedisSrv.Incr(*flgIncrIdKey)
+	// if err != nil {
+	// 	return string(Common.NumberNow())
+	// }
+	return Common.NewUUID()
 }
 
 func main() {
-	DcCenter := new(DcCenter)
+	DcCenter := NewDcCenter()
 	DcCenter.listenSocket()
 }
