@@ -1,6 +1,6 @@
-# DC
+# DC - Data Collect
 
-数据收集，可用于日志上报与相应的统计数据上报。
+数据收集，可用于日志上报与相应的统计数据上报。DcServer部署在各业务机器上，由业务中添加UDP客户端上报相应的日志、统计数据等。DcServer中UdpServer会把数据存到Redis上，由DcSync服务同步到DcCenter。DcCenter将数据存在ElasticSearch。
 
 
 ## DcClient
