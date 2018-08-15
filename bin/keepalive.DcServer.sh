@@ -1,10 +1,11 @@
-LOG=/data/dc/Log
-PROC=/data/dc/DcServer/DcServer
+ROOT=$(cd "$(dirname "$0")"; cd ../; pwd)
+LOG=${ROOT}/Log
+PROC=${ROOT}DcServer/DcServer
 FLAG='
 -dc_center=127.0.0.1:9999
 -redis=127.0.0.1:6379
 -udp_srv=127.0.0.1:11110
--log=/data/dc/Log
+-log=$LOG
 '
 NRPROC=`ps ax | grep -v grep | grep -w $PROC | grep -w "$FLAG" | wc -l`
 echo $NRPROC

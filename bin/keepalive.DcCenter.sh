@@ -1,5 +1,6 @@
-LOG=/data/dc/Log
-PROC=/data/dc/DcCenter/DcCenter
+ROOT=$(cd "$(dirname "$0")"; cd ../; pwd)
+LOG=${ROOT}/Log
+PROC=${ROOT}/DcCenter/DcCenter
 FLAG='
 -dc_center=127.0.0.1:9999
 -es_id_key=EsIncrIdKey

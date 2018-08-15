@@ -26,7 +26,7 @@ $timer = swoole_timer_tick(10, function() {
         "Count"         => $count
     ];
     $message = json_encode($arr);
-    $res = socket_sendto($sock, $message, strlen($message), 0, "127.0.0.1", "11110");
+    $res = socket_sendto($sock, $message, strlen($message), 0, "127.0.0.1", "9999");
 
     echo sprintf("%s socket_sendto count:%d\n", date('YmdHis'), $count);
     socket_close($sock);

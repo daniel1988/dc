@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ROOT="/data/dc/"
+ROOT=$(cd "$(dirname "$0")"; cd ../; pwd)
 srv_list=("DcCenter" "DcServer" )
 script_list=("keepalive.DcServer.sh" "keepalive.DcCenter.sh")
 
@@ -36,7 +36,7 @@ function startService() {
         if [ "$PID" ] ; then
             echo -e "$PNAME\t\033[33;49;2m[ 运行中 ]\033[39;49;0m"
         else
-            cd ${ROOT}bin && bash ${script}
+            cd ${ROOT}/bin && bash ${script}
             echo -e "$(date +'%Y-%m-%d %H:%M:%S') $PNAME\t\033[32;49;2m[ 已启动 ]\033[39;49;0m"
         fi
     done;

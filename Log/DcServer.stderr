@@ -2244,4 +2244,7 @@ Sync: {"AppMarket":1,"AppName":"TEST","AppVer":0,"AppVerCode":1,"DeviceKey":"3b9
 Sync: {"AppMarket":1,"AppName":"TEST","AppVer":0,"AppVerCode":1,"DeviceKey":"058f22d4-08d2-451a-6f53-db8175421b68","OS":"xxxx","UserID":20171121135547845}
 Sync: {"AppMarket":1,"AppName":"TEST","AppVer":0,"AppVerCode":1,"DeviceKey":"4636129d-40c6-4c96-7faf-cd57fb8a54d1","OS":"xxxx","UserID":20171121135547855}
 Sync: {"AppMarket":1,"AppName":"TEST","AppVer":0,"AppVerCode":1,"DeviceKey":"4eb3e9bc-0373-407d-68c4-62fcf29999bd","OS":"xxxx","UserID":20171121135547865}
-.115.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0
+.115.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0keepalive.DcServer.sh: 行 16: /data/github/dcDcServer/DcServer: 没有那个文件或目录
+keepalive.DcServer.sh: 行 16: /data/github/dcDcServer/DcServer: 没有那个文件或目录
+keepalive.DcServer.sh: 行 16: /data/github/dcDcServer/DcServer: 没有那个文件或目录
+bin/keepalive.DcServer.sh: 行 16: /data/github/dcDcServer/DcServer: 没有那个文件或目录

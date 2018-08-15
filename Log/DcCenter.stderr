@@ -1806,3 +1806,20 @@ map[OS:xxxx UserID:2.017112113483464e+16 AppMarket:1 AppName:TEST AppVer:0 AppVe
 -esindex=dc_index 
 -esport=9200 
 -log=/data/dc/Log 
+keepalive.DcCenter.sh: 行 16: /data/github/dc/DcCenter/DcCenter: 没有那个文件或目录
+keepalive.DcCenter.sh: 行 16: /data/github/dc/DcCenter/DcCenter: 没有那个文件或目录
+keepalive.DcCenter.sh: 行 16: /data/github/dc/DcCenter/DcCenter: 没有那个文件或目录
+-calcindex= 
+-dc_center=127.0.0.1:9999 
+-es_id_key=EsIncrIdKey 
+-eshost=127.0.0.1 
+-esindex=dc_index 
+-esport=9200 
+-log=/data/dc/Log 
+20180815014851771 open log file open /data/dc/Log/DcCenter.2018-08-15.log: no such file or directory use STDOUT
+20180815014851772 DcCenter:62 info [127.0.0.1:38104 DcSync connect success]
+20180815014909292 DcCenter:62 info [127.0.0.1:38110 DcSync connect success]
+20180815015054469 DcCenter:62 info [127.0.0.1:38136 DcSync connect success]
+20180815015054482 DcCenter:82 error [InsertDoc Error: 2018-08-15 09:50:54.482096715 +0800 CST m=+155.208369443: Error [map[root_cause:[map[type:illegal_argument_exception reason:request [/dc_index/dc_type/b268efd1-f4d3-48bc-6000-ee9713616850] contains unrecognized parameter: [?ttl]]] type:illegal_argument_exception reason:request [/dc_index/dc_type/b268efd1-f4d3-48bc-6000-ee9713616850] contains unrecognized parameter: [?ttl]]] Status [400] [400] hello world!]
+20180815015112423 DcCenter:62 info [127.0.0.1:38144 DcSync connect success]
+20180815015112424 DcCenter:82 error [InsertDoc Error: 2018-08-15 09:51:12.42485108 +0800 CST m=+173.151123811: Error [map[root_cause:[map[type:illegal_argument_exception reason:request [/dc_index/dc_type/47bd8f20-6ad3-492f-4a56-98da07485601] contains unrecognized parameter: [?ttl]]] type:illegal_argument_exception reason:request [/dc_index/dc_type/47bd8f20-6ad3-492f-4a56-98da07485601] contains unrecognized parameter: [?ttl]]] Status [400] [400] {"DeviceKey":"2e5891f3bfd7cd7f17d3432fa7ef1ba6","AppName":"Test","AppVer":0,"AppMarket":1,"OS":"10.0.1","OsVer":1,"AppVerCode":0,"AppRefId":1534297872,"CliendAddr":"127.0.0.1","UserID":1746492}]
