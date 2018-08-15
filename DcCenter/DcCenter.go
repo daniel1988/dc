@@ -17,7 +17,7 @@ var (
 	// flgRedisSrv     = flag.String("redis", "127.0.0.1:6379", "redis server")
 	flgIncrIdKey    = flag.String("es_id_key", "EsIncrIdKey", "elastic id redis key")
 	flgDcCenterAddr = flag.String("dc_center", "127.0.0.1:9999", "DcCenter Address")
-	flgLogDir       = flag.String("log", "/data/dc/Log", "log dir")
+	flgLogDir       = flag.String("log", "/data/github/dc/Log", "log dir")
 	logErr          = Common.ErrorLog
 	logInfo         = Common.InfoLog
 )

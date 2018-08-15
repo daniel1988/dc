@@ -15,7 +15,8 @@ $client->on("connect", function($cli) {
         "UserID"        => rand(10000, 9999999),
     ];
     $message = json_encode($arr);
-    $res=$cli->send( $message );
+
+    $res = $cli->send( $message );
 
     var_dump( $res ) ;
     $cli->close();

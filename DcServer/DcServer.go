@@ -11,7 +11,7 @@ var (
 	flgRedisSrv      = flag.String("redis", "127.0.0.1:6379", "redis server")
 	flgUdpAddr       = flag.String("udp_srv", "127.0.0.1:11110", "udp server address")
 	flgRedisQueueKey = flag.String("redisqueue", "RedisQueueKey", "redis queue key")
-	flgLogDir        = flag.String("log", "/data/dc/Log", "log dir")
+	flgLogDir        = flag.String("log", "/data/github/dc/Log", "log dir")
 	logErr           = Common.ErrorLog
 	logInfo          = Common.InfoLog
 )

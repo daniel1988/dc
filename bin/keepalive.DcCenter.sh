@@ -7,7 +7,7 @@ FLAG='
 -eshost=127.0.0.1
 -esindex=dc_index
 -esport=9200
--log=/data/dc/Log
+-log=/data/github/dc/Log
 '
 NRPROC=`ps ax | grep -v grep | grep -w $PROC | grep -w "$FLAG" | wc -l`
 if [ $NRPROC -lt 1 ]
